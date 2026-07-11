@@ -2503,7 +2503,7 @@ function decodeKugouValue(value) {
 function kugouSessionObject(cookieText) {
   const cookie = parseCookieString(cookieText == null ? kugouCookie : cookieText);
   const embedded = {};
-  String(cookie.KuGoo || '').split(/[&|]/).forEach(part => {
+  decodeKugouValue(cookie.KuGoo || '').split(/[&|]/).forEach(part => {
     const idx = part.indexOf('=');
     if (idx > 0) embedded[part.slice(0, idx)] = decodeKugouValue(part.slice(idx + 1));
   });

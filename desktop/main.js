@@ -366,7 +366,16 @@ function neteaseCookieHasLogin(cookieText) {
 
 function kugouCookieHasLogin(cookieText) {
   const obj = parseCookieHeader(cookieText);
-  return !!((obj.KuGoo || obj.KugooID || obj.userid) && (obj.token || obj.t));
+  const embedded = {};
+  let kugouValue = String(obj.KuGoo || '');
+  try { kugouValue = decodeURIComponent(kugouValue); } catch (e) {}
+  kugouValue.split(/[&|]/).forEach((part) => {
+    const idx = part.indexOf('=');
+    if (idx > 0) embedded[part.slice(0, idx)] = part.slice(idx + 1);
+  });
+  const userId = obj.userid || obj.KugooID || embedded.KugooID || embedded.KuGooID;
+  const token = obj.token || obj.t || embedded.KugooPwd || embedded.KuGooPwd;
+  return !!(userId && token);
 }
 
 function isQQCookieDomain(domain) {
