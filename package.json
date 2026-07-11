@@ -64,16 +64,16 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "XxHuberrr",
-        "repo": "Mineradio"
+        "owner": "OREN888max",
+        "repo": "Mineradio-OREN"
       }
     ]
   },
   "mineradio": {
     "update": {
       "provider": "github",
-      "owner": "XxHuberrr",
-      "repo": "Mineradio",
+      "owner": "OREN888max",
+      "repo": "Mineradio-OREN",
       "preview": true,
       "preferMirrors": true,
       "mirrors": [
